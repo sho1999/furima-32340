@@ -27,41 +27,60 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
+
 
 ### Association
 
-- has_many :items
+- has_many :items, through: item_users
+- has_many :item_user
 
 ## items テーブル
 
-| Column | Type    | Options     |
-| ------ | ------- | ----------- |
-| image  | string  | null: false |
-| name   | string  | null: false |
-| text   | text    | null: false |
-| price  | integer | null: false |
+| Column        | Type    | Options     |
+| --------------| ------- | ----------- |
+| name          | string  | null: false |
+| text          | text    | null: false |
+| category      | string  | null: false |
+| state         | string  | null: false |
+| postage       | string  | null: false |
+| region        | string  | null: false |
+| shipping_date | string  | null: false |
+| price         | integer | null: false |
 
 
 ### Association
 
+- has_many :users, through: item_users
+- has_many :item_user
+
+## item_users テーブル
+
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :item
 - belongs_to :user
+
 
 ## buys テーブル
 
 | Column       | Type    | Options     |
 | ------------ | --------| ------------|
-| card_num     | integer | null: false |
-| deadline_d   | integer | null: false |
-| deadline_m   | integer | null: false |
-| security_num | integer | null: false |
-| postal_code  | integer | null: false |
-| municipality | text    | null: false |
-| address      | text    | null: false |
-| building     | text    | null: false |
-| phone_num    | integer | null: false |
+| postal_code  | string  | null: false |
+| municipality | string  | null: false |
+| address      | string  | null: false |
+| building     | string  |             |
+| phone_number | integer | null: false |
 
