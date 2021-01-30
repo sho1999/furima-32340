@@ -40,27 +40,27 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :items, through: item_users
-- has_many :item_user
+- has_many :items
+- has_many :item_users
 
 ## items テーブル
 
-| Column        | Type    | Options     |
-| --------------| ------- | ----------- |
-| name          | string  | null: false |
-| text          | text    | null: false |
-| category      | string  | null: false |
-| state         | string  | null: false |
-| postage       | string  | null: false |
-| region        | string  | null: false |
-| shipping_date | string  | null: false |
-| price         | integer | null: false |
+| Column        | Type     | Options     |
+| --------------| -------- | ----------- |
+| name          | string   | null: false |
+| text          | text     | null: false |
+| category      | integer  | null: false |
+| state         | integer  | null: false |
+| postage       | integer  | null: false |
+| region        | integer  | null: false |
+| shipping_date | integer  | null: false |
+| price         | integer  | null: false |
 
 
 ### Association
 
-- has_many :users, through: item_users
-- has_many :item_user
+- has_many :users
+- has_one :item_users
 
 ## item_users テーブル
 
@@ -72,15 +72,22 @@ Things you may want to cover:
 ### Association
 - belongs_to :item
 - belongs_to :user
+- belongs_to :buys
 
 
 ## buys テーブル
 
-| Column       | Type    | Options     |
-| ------------ | --------| ------------|
-| postal_code  | string  | null: false |
-| municipality | string  | null: false |
-| address      | string  | null: false |
-| building     | string  |             |
-| phone_number | integer | null: false |
+| Column        | Type      | Options     |
+| ------------- | ----------| ------------|
+| postal_code   | string    | null: false |
+| prefecture_id | string    | null: false |
+| municipality  | string    | null: false |
+| address       | string    | null: false |
+| building      | string    |             |
+| phone_number  | integer   | null: false |
+| item_user     | references|             |
+
+- has_many :item_users
+
+
 
