@@ -73,7 +73,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :item
 - belongs_to :user
-- belongs_to :buys
+- has_one :buy  
 
 
 ## buys テーブル
