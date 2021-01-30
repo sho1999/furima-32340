@@ -46,21 +46,24 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column           | Type     | Options     |
-| ---------------- | -------- | ----------- |
-| name             | string   | null: false |
-| text             | text     | null: false |
-| category_id      | integer  | null: false |
-| state_id         | integer  | null: false |
-| postage_id       | integer  | null: false |
-| region_id        | integer  | null: false |
-| shipping_date_id | integer  | null: false |
-| price            | integer  | null: false |
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| name             | string     | null: false |
+| text             | text       | null: false |
+| category_id      | integer    | null: false |
+| state_id         | integer    | null: false |
+| postage_id       | integer    | null: false |
+| region_id        | integer    | null: false |
+| shipping_date_id | integer    | null: false |
+| price            | integer    | null: false |
+| user             | references | null: false, foreign_key: true |
+
+
 
 
 ### Association
 
-- has_many :users
+- belongs_to :user
 - has_one :item_user
 
 ## item_users テーブル
@@ -81,7 +84,7 @@ Things you may want to cover:
 | Column        | Type       | Options     |
 | ------------- | -----------| ------------|
 | postal_code   | string     | null: false |
-| region_id     | string     | null: false |
+| region_id     | integer    | null: false |
 | municipality  | string     | null: false |
 | address       | string     | null: false |
 | building      | string     |             |
@@ -89,6 +92,7 @@ Things you may want to cover:
 | item_user     | references | null: false, foreign_key: true |
 
 - belongs_to :item_user
+
 
 
 
