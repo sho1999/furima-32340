@@ -5,9 +5,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       ## Database authenticatable
       t.string :nickname,           null: false, default: ""
-      t.string :email,              null: false, uniqueness: true,format:{with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}, default: ""
-      t.string :encrypted_password, null: false, length: { minimum: 7 }, format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/}, default: ""
+      t.string :email,              null: false, uniqueness: true, format:{with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}, default: ""
+      t.string :encrypted_password, null: false, length: { minimum: 7 }, default: ""
       t.string :last_name         , null: false, default: ""
+
       t.string :first_name        , null: false, default: ""
       t.string :last_name_kana    , null: false, default: ""
       t.string :first_name_kana   , null: false, default: ""
