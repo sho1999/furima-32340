@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   
   with_options presence: true do
-    validates :password confirmation: true, format: { with: VALID_PASSWORD_REGEX}
+    validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX}
 
     validates :nickname       
     validates :email          
