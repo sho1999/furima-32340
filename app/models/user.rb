@@ -11,8 +11,8 @@ class User < ApplicationRecord
     validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX}
 
     validates :nickname       
-    validates :email          
-    validates :encrypted_password
+    # validates :email
+    # validates :password
 
     with_options format: { with: /\A[ぁ-ゔァ-ヴ\p{Ideographic}ａ-ｚＡ-Ｚ０-９]+\z/, message: 'は全角文字を使用してください' } do
       validates :last_name
