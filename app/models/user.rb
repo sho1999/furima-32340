@@ -3,16 +3,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[\d])\w{7,}\z/
-
   
   with_options presence: true do
-    validates :password_confirmation, format: { with: VALID_PASSWORD_REGEX}
+    validates :nickname
+    validates :email, uniqueness: true, format:{with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
 
-    validates :nickname       
-    # validates :email
-    # validates :password
+    VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[\d])\w{7,}\z/
+
+    with_options format: { with: VALID_PASSWORD_REGEX } do
+      validates :password, length: { minimum: 6 }
+      validates :password_confirmation
+    end
 
     with_options format: { with: /\A[ぁ-ゔァ-ヴ\p{Ideographic}ａ-ｚＡ-Ｚ０-９]+\z/, message: 'は全角文字を使用してください' } do
       validates :last_name
@@ -24,6 +25,7 @@ class User < ApplicationRecord
       validates :first_name_kana
     end
     validates :birthdate
+
   end
 
   has_many :items
