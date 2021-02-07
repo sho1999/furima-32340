@@ -1,0 +1,13 @@
+データベースに番号で保存されてしまっているので、index.html.erbで[item.postage=3]みたいになる。
+→保存を番号ではなくて、名前で保存する
+
+
+postage_id.rb
+class PostageId < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :postage
+
+  validates :title, :text, presence: true
+  validates :postage_id, numericality: { other_than: 1 } 
+end
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
