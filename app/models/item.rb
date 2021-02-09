@@ -18,4 +18,8 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   belongs_to :postage
+  belongs_to :genre
+  belongs_to :region
+  belongs_to :shippingdate
+  belongs_to :state
 end

@@ -10,5 +10,5 @@ class State < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :state_ids
+  has_many :items
   end

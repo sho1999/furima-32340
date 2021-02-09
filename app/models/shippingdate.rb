@@ -7,5 +7,5 @@ class Shippingdate < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :shipping_date_ids
+  has_many :items
   end

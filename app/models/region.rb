@@ -20,5 +20,5 @@ class Region < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :region_ids
+  has_many :items
   end
