@@ -65,7 +65,7 @@ RSpec.describe Item, type: :model do
         item.user_id = user.id
         item.region_id = ""
         item.valid?
-        expect(item.errors.full_messages).to include("Region Region Select")
+        expect(item.errors.full_messages).to include("Region Select")
       end
       it 'is invalid without shipping_date_id' do
         user = @user
@@ -113,8 +113,47 @@ RSpec.describe Item, type: :model do
         item.user_id = user.id
         item.image = nil
         item.valid?
-        binding.pry
         expect(item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'category_idで1が選択された場合' do
+        user = @user
+        item = @item
+        item.user_id = user.id
+        item.category_id = 1
+        item.valid?
+        expect(item.errors.full_messages).to include("Category Select")
+      end
+      it 'state_idで1が選択された場合' do
+        user = @user
+        item = @item
+        item.user_id = user.id
+        item.state_id = 1
+        item.valid?
+        expect(item.errors.full_messages).to include("State Select")
+      end
+      it 'postage_idで1が選択された場合' do
+        user = @user
+        item = @item
+        item.user_id = user.id
+        item.postage_id = 1
+        item.valid?
+        expect(item.errors.full_messages).to include("Postage Select")
+      end
+      it 'shipping_date_idで1が選択された場合' do
+        user = @user
+        item = @item
+        item.user_id = user.id
+        item.shipping_date_id = 1
+        item.valid?
+        expect(item.errors.full_messages).to include("Shipping date Select")
+      end
+      it 'region_idで1が選択された場合' do
+        user = @user
+        item = @item
+        item.user_id = user.id
+        item.region_id = 0
+        item.valid?
+        expect(item.errors.full_messages).to include("Region Select")
       end
     end
   end
