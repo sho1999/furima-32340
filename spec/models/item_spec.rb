@@ -7,7 +7,6 @@ RSpec.describe Item, type: :model do
     user = @user
     item = @item
     item.user_id = user.id
-
   end
   
   describe "商品出品機能" do
@@ -68,6 +67,11 @@ RSpec.describe Item, type: :model do
         @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 299")
+      end
+      it 'priceが10000000以上の場合' do
+        @item.price = 1000000000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
       it 'priceが小数点の場合' do
         @item.price = 300.1
