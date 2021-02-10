@@ -24,6 +24,3 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :text, :category_id, :state_id, :postage_id, :region_id, :shipping_date_id, :price, :image).merge(user_id: current_user.id)
   end
 end
-
-#rails db:migrate
-#エラー出力
