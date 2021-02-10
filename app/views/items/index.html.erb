@@ -125,9 +125,9 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
-    <%#= render partial: 'item', collection: @items  %>
+    <%= render partial: 'item', collection: @items  %>
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# if @items[0] == nil %>
+      <% if @items[0] == nil %>
       <%# 商品がある場合は表示されないようにしましょう %>
         <li class='list'>
           <%= link_to '#' do %>
@@ -145,7 +145,7 @@
             </div>
           </div>
         <% end %>
-      <%# end %>
+      <% end %>
        
 
       </li>
