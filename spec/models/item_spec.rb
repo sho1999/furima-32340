@@ -2,11 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
-    @user = FactoryBot.create(:user)
-    user = @user
-    item = @item
-    item.user_id = user.id
+    user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user_id:  user.id)
   end
   
   describe "商品出品機能" do
