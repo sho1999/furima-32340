@@ -36,8 +36,12 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.destroy
-    redirect_to items_path
+    if item.user.id != current_user.id
+      item.destroy
+      redirect_to items_path
+    else
+      render :show
+    end
   end
 
   
