@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, {only: [:new, :edit, :update, :destroy]}
   before_action :item_find, {only: [:show, :edit, :update,]}
-  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+  before_action :ensure_correct_user, {only: [:edit, :update]}
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -58,4 +58,5 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+  
 end
