@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, {only: [:new, :edit, :update]}
-  before_action :item_find, {only: [:show, :edit, :update]}
-  before_action :ensure_correct_user, {only: [:edit, :update]}
+  before_action :authenticate_user!, {only: [:new, :edit, :update, :destroy]}
+  before_action :item_find, {only: [:show, :edit, :update,]}
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -34,6 +34,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to items_path
+  end
+
+  
   
   
 
