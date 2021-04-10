@@ -2,70 +2,78 @@
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| last_name       | string | null: false |
-| first_nama      | string | null: false |
-| last_name_kana  | string | null: false |
-| first_nama_kana | string | null: false |
-| birthday        | string | null: false |
-
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false, unique: true |
+| password           | string | null: false |
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| first_nama         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_nama_kana    | string | null: false |
+| birthday           | date   | null: false |
+ 
 
 ### Association
 
 - has_many :items
-- belongs_to :receiving
-- belongs_to :purchase
+- belongs_to :receive
+- has_many :purchases
 
 
 ## items テーブル
-
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| name           | string     | null: false                    |
-| price          | string     | null: false                    |
-| category       | string     | null: false                    |
-| products_state | string     | null: false                    |
-| delivery_fee   | string     | null: false                    |
-| sending_region | string     | null: false                    |
-| shipping_date  | string     | null: false                    |
-| user_id        | references | null: false, foreign_key: true |
+ 
+| Column            | Type        | Options                        |
+| ----------------- | ----------- | ------------------------------ |
+| name              | string      | null: false                    |
+| description       | text        | null: false                    |
+| price             | integer     | null: false                    |
+| category_id       | integer     | null: false                    |
+| state_id          | integer     | null: false                    |
+| delivery_fee_id   | integer     | null: false                    |
+| region_id         | integer     | null: false                    |
+| shipping_date_id  | integer     | null: false                    |
+| user              | references  | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- belongs_to :purchase
+- has_one :purchase
 
 
-## purchaseテーブル
+## purchasesテーブル
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| item_id       | references | null: false, foreign_key: true |
-| user_id       | references | null: false, foreign_key: true |
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| item       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
+- has_one :receive
 
 
-## receivingテーブル
+## receivesテーブル
 
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| postcode       | string     | null: false |
-| receiving_area | string     | null: false |
-| city           | string     | null: false |
-| block          | string     | null: false |
-| building       | string     | null: false |
-| phone_num      | string     | null: false |
+| Column            | Type       | Options     |
+| ----------------- | ---------- | ----------- |
+| postcode          | string     | null: false |
+| region_id         | integer    | null: false |
+| city              | string     | null: false |
+| block             | string     | null: false |
+| building          | string     | null: false |
+| phone_num         | string     | null: false |
+| item              | references | null: false, foreign_key: true |
+| user              | references | null: false, foreign_key: true |
+
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
+- belongs_to :purchase
