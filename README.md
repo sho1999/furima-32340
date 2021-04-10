@@ -38,21 +38,22 @@
 ### Association
 
 - belongs_to :user
+- belongs_to :purchase
 
 
 ## purchaseテーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| card_info     | string     | null: false                    |
-| term          | string     | null: false                    |
-| security_code | string     | null: false                    |
+| item_id       | references | null: false, foreign_key: true |
 | user_id       | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
+
 
 ## receivingテーブル
 
