@@ -6,7 +6,6 @@
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
 | email              | string | null: false, unique: true |
-| password           | string | null: false |
 | encrypted_password | string | null: false |
 | last_name          | string | null: false |
 | first_nama         | string | null: false |
@@ -68,12 +67,10 @@
 | block             | string     | null: false |
 | building          | string     | null: false |
 | phone_num         | string     | null: false |
-| item              | references | null: false, foreign_key: true |
-| user              | references | null: false, foreign_key: true |
+| purchase          | references | null: false, foreign_key: true |
+
+
 
 
 ### Association
-
-- belongs_to :user
-- belongs_to :item
 - belongs_to :purchase
