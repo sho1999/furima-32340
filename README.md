@@ -17,7 +17,6 @@
 ### Association
 
 - has_many :items
-- belongs_to :receive
 - has_many :purchases
 
 
@@ -65,7 +64,7 @@
 | region_id         | integer    | null: false |
 | city              | string     | null: false |
 | block             | string     | null: false |
-| building          | string     | null: false |
+| building          | string     |             |
 | phone_num         | string     | null: false |
 | purchase          | references | null: false, foreign_key: true |
 
