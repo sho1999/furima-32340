@@ -6,14 +6,14 @@ class User < ApplicationRecord
 
   with_options presence: true do
     VALID_PASSWORD_REGEX =/(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/
-    VALID_USER_REGEX =/\A[一-龥]+\z/
+    VALID_USER_REGEX =/\A[ぁ-んァ-ン一-龥]/
     VALID_USER_REGEX_KANA =/[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/
 
     validates :nickname
     validates :password,
               format: { with: VALID_PASSWORD_REGEX,
               message: "は半角英数字それぞれ１文字以上含む必要があります"}
-    with_options format: { with: VALID_USER_REGEX,message: "は漢字のみで入力して下さい"} do
+    with_options format: { with: VALID_USER_REGEX,message: "は全角で入力して下さい"} do
       validates :last_name
       validates :first_name
     end

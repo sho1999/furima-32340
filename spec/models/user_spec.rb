@@ -104,15 +104,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password は半角英数字それぞれ１文字以上含む必要があります")
       end
-      it 'first_nameは漢字でないと登録できない' do
-        @user.first_name = 'ああ'
+      it 'first_nameは全角でないと登録できない' do
+        @user.first_name = 'ｱｱ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name は漢字のみで入力して下さい")
+        expect(@user.errors.full_messages).to include("First name は全角で入力して下さい")
       end
-      it 'last_nameは漢字でないと登録できない' do
-        @user.last_name = 'ああ'
+      it 'last_nameは全角でないと登録できない' do
+        @user.last_name = 'ｱｱ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name は漢字のみで入力して下さい")
+        expect(@user.errors.full_messages).to include("Last name は全角で入力して下さい")
       end
       it 'first_name_kanaはカタカナでないと登録できない' do
         @user.first_name_kana = 'ああ'
