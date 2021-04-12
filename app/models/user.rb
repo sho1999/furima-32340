@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   with_options presence: true do
     VALID_PASSWORD_REGEX =/(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/
-    VALID_USER_REGEX =/\A[ぁ-んァ-ン一-龥]/
+    VALID_USER_REGEX =/\A[ぁ-んァ-ヶ一-龥々ー]+\z/
     VALID_USER_REGEX_KANA =/[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/
 
     validates :nickname
