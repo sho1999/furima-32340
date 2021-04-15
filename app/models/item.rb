@@ -2,9 +2,13 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   with_options presence: true do
+    VALID_PRICE_REGEX =/\A[0-9]*\z/
+    
     validates :name
     validates :description
-    validates :price
+    validates :price,
+              numericality: { greater_than: 299, less_than: 10000000 },
+              format: { with: VALID_PRICE_REGEX, message: "は半角数字で入力して下さい"}
     validates :image, unless: :was_attached?
     with_options numericality: { other_than: 1 } do
       validates :category_id
@@ -26,7 +30,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :region
   belongs_to :shipping_date
-
   belongs_to :user
   has_one_attached :image
   has_one :purchase
