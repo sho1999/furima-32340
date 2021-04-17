@@ -1,0 +1,12 @@
+.flash {
+  width: 100%;
+  height: 50px;
+  background-color: orange;
+  color: white;
+  align-items: center;
+  display: flex;
+}
+
+.flash-text {
+  margin: auto;
+}
