@@ -8,6 +8,8 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../count")
+require("../flash")
+
 
 
 
@@ -17,3 +19,4 @@ require("../count")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
