@@ -24,34 +24,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'is invalid without a price' do
-        @item.price = ''
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'is invalid without a category_id' do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it 'is invalid without a state_id' do
-        @item.state_id = ''
+        @item.state_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("State can't be blank")
+        expect(@item.errors.full_messages).to include("State must be other than 1")
       end
       it 'is invalid without a delivery_fee_id' do
-        @item.delivery_fee_id = ''
+        @item.delivery_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
       end
       it 'is invalid without a region_id' do
-        @item.region_id = ''
+        @item.region_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Region can't be blank")
+        expect(@item.errors.full_messages).to include("Region must be other than 0")
       end
       it 'is invalid without a shipping_date_id' do
-        @item.shipping_date_id = ''
+        @item.shipping_date_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping date can't be blank")
+        expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
       end
       it 'is invalid without a user_id' do
         @item.user = nil
@@ -64,12 +64,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '価格が299円以下だと出品できない' do
-        @item.price = '200'
+        @item.price = 200
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 299")
       end
       it '価格が10000000円以上だと出品できない' do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end
