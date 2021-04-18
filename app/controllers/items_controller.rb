@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index]
   
   def index
   end
@@ -20,13 +19,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :price, :category_id, :state_id, :delivery_fee_id, :region_id, :shipping_date_id, :image).merge(user_id: current_user.id)
-  end
-
-  def move_to_index
-    unless user_signed_in?
-      redirect_to new_user_session_path
-      flash[:notice] = "ログインが必要です"
-    end
   end
 
 end
