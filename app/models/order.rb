@@ -7,7 +7,7 @@ class Order < ApplicationRecord
     validates :phone_num
     validates :purchase 
   end
-  validates :building
 
   belongs_to :purchase
 end
+
