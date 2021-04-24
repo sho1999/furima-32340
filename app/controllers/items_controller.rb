@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :delete]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :self_confirm, only: [:edit, :update]
   before_action :authenticate_user!, except: [:show, :index]
 
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
   end
 
   private
