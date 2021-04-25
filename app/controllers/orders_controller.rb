@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
 
+  before_action :set_item, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @order = Order.new
   end
 
@@ -11,13 +12,18 @@ class OrdersController < ApplicationController
       @order.save
       return redirect_to root_path
     else
-      render 'index'
+      render "index"
     end
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:postcode, :region_id, :city, :block, :building, :phone_num)
+    params.permit(:postcode, :region_id, :city, :block, :building, :phone_num)
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 end
+
