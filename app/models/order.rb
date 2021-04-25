@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  attr_accessor :token
+
   with_options presence: true do
     VALID_POSTAL_CODE =/\A\d{3}[-]\d{4}\z/
     VALID_PHONE_NUM =/\A\d{11}\z/
@@ -7,9 +9,8 @@ class Order < ApplicationRecord
     validates :city
     validates :block
     validates :phone_num,  format: { with: VALID_PHONE_NUM, message: "はハイフンなし11桁で入力して下さい"}
-    validates :purchase 
   end
 
-  belongs_to :purchase
+  validates :token, presence: true
 end
 
