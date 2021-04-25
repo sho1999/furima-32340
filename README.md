@@ -53,10 +53,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :receive
+- has_one :order
 
 
-## receivesテーブル
+## ordersテーブル
 
 | Column            | Type       | Options     |
 | ----------------- | ---------- | ----------- |
