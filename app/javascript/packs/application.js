@@ -8,7 +8,8 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../count")
-require("../flash")
+require("../card")
+
 
 
 
