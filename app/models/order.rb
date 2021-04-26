@@ -12,5 +12,7 @@ class Order < ApplicationRecord
   end
 
   validates :token, presence: true
+
+  belongs_to :purchase
 end
 
