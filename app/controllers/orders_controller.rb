@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
 
   before_action :set_item, only: [:index, :create]
-  before_action :authenticate_user!
-  before_action :self_confirm
+  before_action :authenticate_user!, except: :index
 
 
   def index
@@ -37,12 +36,6 @@ class OrdersController < ApplicationController
       card: order_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
-  end
-
-  def self_confirm
-    if current_user.id != @item.user_id
-      redirect_to root_path
-    end
   end
 end
 
