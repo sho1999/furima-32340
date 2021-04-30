@@ -3,14 +3,8 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
   before_action :self_confirm
-  before_action :sold_out
-
 
   def index
-    @user_purchase = UserPurchase.new
-  end
-
-  def new
     @user_purchase = UserPurchase.new
   end
 
@@ -36,22 +30,16 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]   # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: purchase_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @item.price,
+      card: purchase_params[:token],
+      currency: 'jpy'
     )
   end
 
   def self_confirm
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
-
-  def sold_out
-    if @item.purchase.present?
+    if @item.purchase.present? || current_user.id == @item.user_id
       redirect_to root_path
     end
   end

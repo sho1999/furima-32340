@@ -11,12 +11,12 @@ class UserPurchase
     validates :city
     validates :block
     validates :phone_num,  format: { with: VALID_PHONE_NUM, message: "はハイフンなし11桁で入力して下さい"}
+    validates :user_id
+    validates :item_id
+    validates :token
   end
 
-  validates :token, presence: true
-
   def save
-    # user = User.create(name: name, name_reading: name_reading, nickname: nickname)
     Order.create(postcode: postcode, region_id: region_id, city: city, block: block, building: building, phone_num: phone_num)
     Purchase.create(user_id: user_id, item_id: item_id)
   end

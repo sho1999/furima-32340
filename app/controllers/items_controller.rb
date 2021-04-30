@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :self_confirm, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :sold_out, only: [:edit, :update, :destroy]
 
 
   
@@ -54,17 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def self_confirm
-    if user_signed_in?
-      if current_user.id != @item.user_id
-        redirect_to root_path
-      end
-    else
-      redirect_to root_path
-    end
-  end
-
-  def sold_out
-    if @item.purchase.present?
+    if @item.purchase.present? || current_user.id != @item.user_id
       redirect_to root_path
     end
   end
