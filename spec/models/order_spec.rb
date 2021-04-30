@@ -48,10 +48,14 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Postcode はハイフンあり7桁で入力して下さい")
       end
-      it "phone_numは" do
+      it "phone_numはハイフンなし11桁でないと保存できない" do
         @order.phone_num = "080-8978-1234"
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone num はハイフンなし11桁で入力して下さい")
+      end
+      it "user_idが空では登録できないこと" do
+      end
+      it "item_idが空では登録できないこと" do
       end
     end
   end
