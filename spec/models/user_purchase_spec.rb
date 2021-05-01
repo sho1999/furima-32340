@@ -58,7 +58,12 @@ RSpec.describe UserPurchase, type: :model do
       it "phone_numはハイフンなし11桁以内でないと保存できない" do
         @user_purchase.phone_num = "080-8978-1234"
         @user_purchase.valid?
-        expect(@user_purchase.errors.full_messages).to include("Phone num はハイフンなし11桁以内で入力して下さい")
+        expect(@user_purchase.errors.full_messages).to include("Phone num はハイフンなし半角11桁以内で入力して下さい")
+      end
+      it '電話番号が半角数字のみでないと登録できないこと' do
+        @user_purchase.phone_num = "０８０８９７６０９８７"
+        @user_purchase.valid?
+        expect(@user_purchase.errors.full_messages).to include("Phone num はハイフンなし半角11桁以内で入力して下さい")
       end
       it "user_idが空では登録できないこと" do
         @user_purchase.user_id = ""

@@ -10,7 +10,7 @@ class UserPurchase
     validates :region_id    , numericality: { other_than: 0 } 
     validates :city
     validates :block
-    validates :phone_num    , format: { with: VALID_PHONE_REGEX, message: "はハイフンなし11桁以内で入力して下さい"}
+    validates :phone_num    ,format: { with: VALID_PHONE_REGEX, message: "はハイフンなし半角11桁以内で入力して下さい"}
     validates :user_id
     validates :item_id
     validates :token
