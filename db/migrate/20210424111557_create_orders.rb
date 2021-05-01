@@ -7,7 +7,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string     :block             , null: false
       t.string     :building          , null: false
       t.string     :phone_num         , null: false
-
+      t.references :purchase          , null: false, foreign_key: true
       t.timestamps
     end
   end
