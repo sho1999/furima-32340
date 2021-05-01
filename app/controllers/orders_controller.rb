@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
 
   def create
     @user_purchase = UserPurchase.new(purchase_params)
-    binding.pry
     if @user_purchase.valid?
       pay_item
       @user_purchase.save
