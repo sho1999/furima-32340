@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :self_confirm, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
 
+
   
   def index
     @item = Item.all.order("created_at DESC")
@@ -52,7 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def self_confirm
-    if current_user.id != @item.user_id
+    if @item.purchase.present? || current_user.id != @item.user_id
       redirect_to root_path
     end
   end

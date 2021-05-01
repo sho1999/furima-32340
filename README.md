@@ -53,10 +53,10 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :receive
+- has_one :order
 
 
-## receivesテーブル
+## ordersテーブル
 
 | Column            | Type       | Options     |
 | ----------------- | ---------- | ----------- |
@@ -67,7 +67,6 @@
 | building          | string     |             |
 | phone_num         | string     | null: false |
 | purchase          | references | null: false, foreign_key: true |
-
 
 
 
