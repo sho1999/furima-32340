@@ -60,6 +60,7 @@ RSpec.describe Order, type: :model do
         expect(@order.errors.full_messages).to include("Phone num はハイフンなし11桁以内で入力して下さい")
       end
       it "user_idが空では登録できないこと" do
+        
       end
       it "item_idが空では登録できないこと" do
       end
