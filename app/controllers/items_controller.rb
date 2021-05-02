@@ -53,7 +53,11 @@ class ItemsController < ApplicationController
   end
 
   def self_confirm
-    if @item.purchase.present? || current_user.id != @item.user_id
+    if user_signed_in?
+      if @item.purchase.present? || current_user.id != @item.user_id
+        redirect_to root_path
+      end
+    else
       redirect_to root_path
     end
   end
